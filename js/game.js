@@ -10,7 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
     "tigre.png",
     "urso.png",
     "cachorro.png",
-    "gato.png"
+    "gato.png",
+    "pavão.png",
+    "tamanduá.png",
+    "formiga.png",
+    "abelha.png",
+    "águia.png"
   ];
 
   const animalImg = document.getElementById("animal-img");
@@ -111,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function handleKeyClick(buttonEl, letra) {
     const nextIndex = slots.findIndex((ch, idx) => ch === "_" && !revealedByHint[idx]);
-    if (nextIndex === -1) return; 
+    if (nextIndex === -1) return;
 
     slots[nextIndex] = letra.toUpperCase();
     renderSlots();
@@ -121,6 +126,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const correta = animalName.toLowerCase();
 
       if (normalize(tentativa) === normalize(correta)) {
+        slots = animalName.toUpperCase().split("");
+        renderSlots();
+
         animateAllLetters("correct-letter");
         showMessage("🎉 Muito bem!", "success");
         setTimeout(() => loadNewAnimal(), 1200);
